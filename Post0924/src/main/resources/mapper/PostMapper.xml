@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.du.post0924.mapper.PostMapper">
+    <select id="findAll" resultType="com.du.post0924.domain.Post">
+        SELECT * FROM post ORDER BY id DESC
+    </select>
+
+    <select id="findById" resultType="com.du.post0924.domain.Post" parameterType="long">
+        SELECT * FROM post WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.du.post0924.domain.Post" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO post(title, content, writer) VALUES (#{title}, #{content}, #{writer})
+    </insert>
+
+    <update id="update" parameterType="com.du.post0924.domain.Post">
+        UPDATE post SET title = #{title}, content = #{content}, writer = #{writer} WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM post WHERE id = #{id}
+    </delete>
+
+    <select id="findPage" resultType="com.du.post0924.domain.Post">
+        SELECT * FROM post ORDER BY id DESC LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(*) FROM post
+    </select>
+</mapper>

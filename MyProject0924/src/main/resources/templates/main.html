@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Music</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+</head>
+<body class="container mt-5">
+
+<h1 class="mb-4">Music</h1>
+
+<div class="mb-3">
+    <a th:href="@{/new}" class="btn btn-primary">음악 추가</a>
+</div>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>곡</th>
+        <th>아티스트</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- List musics with the correct attribute names -->
+    <tr th:each="music : ${musics}">
+        <td th:text="${music.id}">1</td> <!-- Correct binding for ID -->
+        <td>
+            <a th:href="@{/music/{id}(id=${music.id})}" th:text="${music.title}">제목</a> <!-- Correct URL binding -->
+        </td>
+        <td th:text="${music.artist}">가수</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
