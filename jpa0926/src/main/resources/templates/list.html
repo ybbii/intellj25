@@ -1,0 +1,19 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<h1>게시글 목록</h1>
+<hr>
+<ul>
+    <li th:each="post : ${posts}">
+        <a th:href="@{/post/{id}(id=${post.id})}">상세보기</a>
+        <strong th:text="${post.title}">제목</strong>
+    </li>
+</ul>
+<a th:href="@{post/new}">글 작성</a>
+</body>
+</html>
